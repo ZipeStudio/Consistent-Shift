@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "me.zipestudio.consistentshift.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "compatibilityLevel": "JAVA_${java}",
+  "mixins": [
+    "ScreenHandlerMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
