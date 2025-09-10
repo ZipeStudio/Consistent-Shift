@@ -42,7 +42,7 @@
 
 ## 🔹 GIF Showcase
 <div align="center">
-  <img src="https://raw.githubusercontent.com/ZipeStudio/Consistent-Shift/refs/heads/master/img/showcase.gif" width="1000px" alt="mod showcase"/>
+  <img src="https://raw.githubusercontent.com/ZipeStudio/Consistent-Shift/refs/heads/master/img/showcase.gif" width="512px" alt="mod showcase"/>
 </div>
 
 ---
@@ -52,7 +52,7 @@ Currently, when using **Ctrl + double-click (Pickup All)** in a container, vanil
 Instead of following the mod’s rule (**left → right, starting with hotbar**), items are placed **right → left** across the inventory.
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/ZipeStudio/Consistent-Shift/refs/heads/master/img/knows_issue.gif" width="1000px" alt="mod showcase"/>
+  <img src="https://raw.githubusercontent.com/ZipeStudio/Consistent-Shift/refs/heads/master/img/knows_issue.gif" width="512px" alt="mod showcase"/>
 </div>
 
 Here’s the difference:
