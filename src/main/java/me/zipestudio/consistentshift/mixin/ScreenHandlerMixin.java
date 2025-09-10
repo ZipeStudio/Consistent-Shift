@@ -54,7 +54,6 @@ public abstract class ScreenHandlerMixin {
 
         int hotbarStart = this.slots.size() - 9;
 
-        // Получаем все слоты для вставки (сначала хотбар, потом main-inventory)
         List<Integer> targets = ConsistentShiftClient.findInsertSlots(handler, clickedSlot.getStack(), hotbarStart, this.slots.size(), false);
         targets.addAll(ConsistentShiftClient.findInsertSlots(handler, clickedSlot.getStack(), clickedSlot.inventory.size(), hotbarStart, false));
 
@@ -62,7 +61,6 @@ public abstract class ScreenHandlerMixin {
 
         Integer tempIndex = null;
 
-        // Временно убираем предмет из курсора, если он был
         if (!cursorInitiallyEmpty) {
             int playerStart = clickedSlot.inventory.size();
             int playerEnd = this.slots.size();
@@ -80,21 +78,17 @@ public abstract class ScreenHandlerMixin {
             }
         }
 
-        // Берем стек из сундука в курсор
         im.clickSlot(this.syncId, slotIndex, 0, SlotActionType.PICKUP, player);
 
-        // Раскладываем по найденным слотам
         for (int targetIndex : targets) {
             if (handler.getCursorStack().isEmpty()) break;
             im.clickSlot(this.syncId, targetIndex, 0, SlotActionType.PICKUP, player);
         }
 
-        // Остаток — оставляем в курсоре или возвращаем в исходный слот
         if (!handler.getCursorStack().isEmpty()) {
             im.clickSlot(this.syncId, slotIndex, 0, SlotActionType.PICKUP, player);
         }
 
-        // Вернуть временно убранный курсор
         if (tempIndex != null) {
             im.clickSlot(this.syncId, tempIndex, 0, SlotActionType.PICKUP, player);
         }
