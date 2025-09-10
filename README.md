@@ -51,18 +51,18 @@
 Currently, when using **Ctrl + double-click (Pickup All)** in a container, vanilla logic is still applied.  
 Instead of following the mod’s rule (**left → right, starting with hotbar**), items are placed **right → left** across the inventory.
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/ZipeStudio/Consistent-Shift/refs/heads/master/img/known_issue.gif" width="512px" alt="mod showcase"/>
-</div>
-
 Here’s the difference:
 ```diff
 Expected (Consistent Shift):
-[Hotbar 1] → [Hotbar 2] → ... → [Hotbar 9] → [Main Inventory Left → Right]
+[Hotbar 1] → [Hotbar 2] → … → [Hotbar 9] → [Main Inventory Left → Right]
 
 Vanilla (current bug):
-[Hotbar 9] → [Hotbar 8] → ... → [Hotbar 1] → [Main Inv Right → Left]
+[Hotbar 9] → [Hotbar 8] → … → [Hotbar 1] → [Main Inventory Right → Left]
 ```
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/ZipeStudio/Consistent-Shift/refs/heads/master/img/known_issue.gif" width="512px" alt="mod showcase"/>
+</div>
 
 ## 🤝 Contributing
 If you know how to fix the **Pickup All bug** (or have ideas for improvements), feel free to **open an issue or a pull request on the [GitHub project page](https://github.com/ZipeStudio/Consistent-Shift)**.  
