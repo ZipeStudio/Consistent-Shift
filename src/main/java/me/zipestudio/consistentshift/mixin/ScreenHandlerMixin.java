@@ -39,32 +39,35 @@ public abstract class ScreenHandlerMixin {
 
     @Inject(method = "internalOnSlotClick", at = @At("HEAD"), cancellable = true)
     private void onCustomQuickMove(int slotIndex, int button, SlotActionType actionType, PlayerEntity player, CallbackInfo ci) {
+
         if (actionType != SlotActionType.QUICK_MOVE || slotIndex < 0) return;
-        if (player == null) return;
+
+        ScreenHandler handler = (ScreenHandler) (Object) this;
+        Slot clickedSlot = this.slots.get(slotIndex);
+
+        if (!clickedSlot.hasStack() || clickedSlot.inventory == player.getInventory()) return;
+
+        ItemStack cursorStack = handler.getCursorStack();
+        ItemStack clickedStack = clickedSlot.getStack();
+
+        if (actionType == SlotActionType.PICKUP_ALL) return;
+        if (!cursorStack.isEmpty() && ItemStack.areItemsEqual(cursorStack, clickedStack)) return;
 
         ClientPlayerInteractionManager im = MinecraftClient.getInstance().interactionManager;
         if (im == null) return;
 
-        Slot clickedSlot = this.slots.get(slotIndex);
-        if (clickedSlot.inventory == player.getInventory() || !clickedSlot.hasStack()) return;
-
-        ScreenHandler handler = (ScreenHandler) (Object) this;
-        ItemStack originalCursor = handler.getCursorStack().copy();
+        ItemStack originalCursor = cursorStack.copy();
         boolean cursorInitiallyEmpty = originalCursor.isEmpty();
-
         int hotbarStart = this.slots.size() - 9;
 
-        List<Integer> targets = ConsistentShiftClient.findInsertSlots(handler, clickedSlot.getStack(), hotbarStart, this.slots.size(), false);
-        targets.addAll(ConsistentShiftClient.findInsertSlots(handler, clickedSlot.getStack(), clickedSlot.inventory.size(), hotbarStart, false));
-
+        List<Integer> targets = ConsistentShiftClient.findInsertSlots(handler, clickedStack, hotbarStart, this.slots.size(), false);
+        targets.addAll(ConsistentShiftClient.findInsertSlots(handler, clickedStack, clickedSlot.inventory.size(), hotbarStart, false));
         if (targets.isEmpty()) return;
 
         Integer tempIndex = null;
 
         if (!cursorInitiallyEmpty) {
-            int playerStart = clickedSlot.inventory.size();
-            int playerEnd = this.slots.size();
-            for (int i = playerStart; i < playerEnd; i++) {
+            for (int i = clickedSlot.inventory.size(); i < this.slots.size(); i++) {
                 if (i == slotIndex || targets.contains(i)) continue;
                 Slot s = this.slots.get(i);
                 if (s.getStack().isEmpty() && s.canInsert(originalCursor)) {
