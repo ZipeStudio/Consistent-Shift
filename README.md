@@ -48,7 +48,7 @@
 ---
 
 ## ⚠️ Known Issue
-Currently, when using **Ctrl + double-click (Pickup All)** in a container, vanilla logic is still applied.  
+Currently, when using **Shift + double-click (Pickup All)** in a container, vanilla logic is still applied.  
 Instead of following the mod’s rule (**left → right, starting with hotbar**), items are placed **right → left** across the inventory.
 
 Here’s the difference:
