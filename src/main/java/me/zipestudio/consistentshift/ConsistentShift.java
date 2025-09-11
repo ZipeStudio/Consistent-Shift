@@ -10,7 +10,6 @@ public class ConsistentShift implements ModInitializer {
 
 	public static final String MOD_NAME = /*$ mod_name*/ "Consistent Shift";
 	public static final String MOD_ID = /*$ mod_id*/ "consistent-shift";
-	public static final String YACL_DEPEND_VERSION = /*$ yacl*/ "1.7.1";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_NAME);
 
 	public static Identifier id(String path) {
